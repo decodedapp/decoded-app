@@ -521,7 +521,7 @@ function ImageView({
           </div>
         </div>
       </div>
-      <div className="flex-col w-full overflow-y-auto hidden lg:block">
+      <div className="flex-col w-full overflow-y-auto hidden lg:block max-h-[670px]">
         {detailPageState.itemList?.map((item, index) => (
           <Link
             href={item.info.affiliateUrl ?? "#"}
@@ -530,12 +530,13 @@ function ImageView({
             onMouseOver={() => setCurrentIndex(index)}
             onMouseOut={() => setCurrentIndex(null)}
           >
-            <div className="w-16 h-20 relative ml-4 ">
+            <div className="w-20 h-20 relative ml-4">
               <Image
                 src={item.info.imageUrl ?? ""}
                 alt={item.info.name}
                 fill={true}
-                style={{ objectFit: "contain" }}
+                style={{ objectFit: "cover" }}
+                className="rounded-lg"
               />
             </div>
             <div className="flex flex-col w-full text-center overflow-clip">

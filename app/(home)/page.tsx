@@ -204,13 +204,13 @@ function FeaturedView() {
 
 function PinView({ images }: { images: MainImage[] | null }) {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'lg'));
-  
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "lg"));
+
   const getCols = () => {
     if (isMobile) return 2;
     if (isTablet) return 4;
-    return 6;
+    return 5;
   };
 
   return (
@@ -220,13 +220,18 @@ function PinView({ images }: { images: MainImage[] | null }) {
       >
         스타일 둘러보기
       </h2>
-      <ImageList variant="masonry" cols={getCols()} gap={20} className="p-2 mt-10">
+      <ImageList
+        variant="masonry"
+        cols={getCols()}
+        gap={20}
+        className="p-2 mt-10"
+      >
         <div>
-        {images?.map((image, index) => (
-          <ImageListItem key={index}>
-            <Pin image={image} />
-          </ImageListItem>
-        ))}
+          {images?.map((image, index) => (
+            <ImageListItem key={index}>
+              <Pin image={image} shouldOpen={Math.random() < 0.5} />
+            </ImageListItem>
+          ))}
         </div>
       </ImageList>
     </div>
